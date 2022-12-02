@@ -17,26 +17,6 @@ def main():
         }
     }
 
-    with open("tournament.txt") as f:
-        lines = f.read()
-        round_game = lines.split("\n")[:-1]
-        # score based on shape selected
-        my_score = 0
-        for el in round_game:
-            if "Z" in el:
-                my_score += 3
-            elif "X" in el:
-                my_score += 1
-            else:
-                my_score += 2
-
-        for el in round_game:
-            first = el[0]
-            second = el[-1]
-            my_score += round_winner[second][first]
-
-        print(my_score)
-
     second_strategy = {
         "A": {
             "X": 3,
@@ -55,6 +35,25 @@ def main():
         }
     }
 
+    with open("tournament.txt") as f:
+        lines = f.read()
+        round_game = lines.split("\n")[:-1]
+    # score based on shape selected
+    my_score = 0
+    for el in round_game:
+        if "Z" in el:
+            my_score += 3
+        elif "X" in el:
+            my_score += 1
+        else:
+            my_score += 2
+        first = el[0]
+        second = el[-1]
+        my_score += round_winner[second][first]
+
+    print(my_score)
+
+    # PART 2
     second_score = 0
     for el in round_game:
         opponent = el[0]
